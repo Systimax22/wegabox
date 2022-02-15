@@ -113,6 +113,7 @@ void handleStatus()
 // страница PWD
 void handlePWD()
 {
+  #if c_MCP23017 == 1
   mcp.pinMode(DRV1_A, OUTPUT);
   mcp.digitalWrite(DRV1_A, HIGH);
 
@@ -133,4 +134,5 @@ void handlePWD()
   ledcWrite(ledChannel, pwd);
 
   server.send(200, "text/plain", "pwd=" + fFTS(pwd, 0) + " freq=" + fFTS(freq, 0));
+  #endif // c_MCP23017
 }
